@@ -1,29 +1,48 @@
 const SKETCH_PAD_SIZE = 960;
-const SKETCH_PAD = document.querySelector("#container");
+const MAIN_CONTAINER = document.querySelector("#container");
 const SKETCH_PAD_CONTAINER = document.querySelector("body");
 const PROMPT_BUTTON = document.createElement("button");
+const ERASE_SKETCH_BUTTON = document.createElement("button");
 
 let squaredCellWidth = 60;
 let numberOfCellRows = 16;
 let numberOfCellColumns = numberOfCellRows;
+let sketchPad = document.createElement("div");
 let titleNdPromptBar = document.createElement("div");
 let sketchPadTitle = document.createElement("div");
+let sketchPadNdEraser = document.createElement("div");
+let eraserDiv = document.createElement("div");
 
+
+sketchPadNdEraser.setAttribute("id", "sketchpad-nd-eraser");
 titleNdPromptBar.style.width = `${SKETCH_PAD_SIZE + 20}px`; //additional 20 represent the sketch pad additional width as a result of padding 
 titleNdPromptBar.setAttribute("id", "title-nd-prompt-bar");
 sketchPadTitle.setAttribute("id", "sketchpad-info");
+
+sketchPad.setAttribute("id", "sketch-pad");
+sketchPad.style.width = SKETCH_PAD_SIZE;
+sketchPad.style.height = SKETCH_PAD_SIZE;
 
 PROMPT_BUTTON.setAttribute("id", "prompt-button");
 PROMPT_BUTTON.textContent = "Set boxes size";
 PROMPT_BUTTON.addEventListener("click", promptSketchSize);
 
+eraserDiv.setAttribute("id", "eraser-div");
+ERASE_SKETCH_BUTTON.setAttribute("id", "erase-sketch-button");
+ERASE_SKETCH_BUTTON.textContent = "Clean slate";
+ERASE_SKETCH_BUTTON.addEventListener("click", sketchPadSizer);
+
+eraserDiv.appendChild(ERASE_SKETCH_BUTTON)
 
 titleNdPromptBar.appendChild(sketchPadTitle);
 titleNdPromptBar.appendChild(PROMPT_BUTTON);
-SKETCH_PAD_CONTAINER.insertAdjacentElement('afterbegin', titleNdPromptBar);
+MAIN_CONTAINER.appendChild(titleNdPromptBar);
 
-SKETCH_PAD.style.width = SKETCH_PAD_SIZE;
-SKETCH_PAD.style.height = SKETCH_PAD_SIZE;
+sketchPadNdEraser.appendChild(sketchPad);
+sketchPadNdEraser.appendChild(eraserDiv);
+MAIN_CONTAINER.appendChild(sketchPadNdEraser);
+
+
 sketchPadSizer();
 sketchPadTitle.textContent = `${numberOfCellRows} * ${numberOfCellRows} GRID SKETCHPAD`;
 
@@ -46,7 +65,7 @@ function promptSketchSize() {
 }
 
 function sketchPadSizer() {
-  SKETCH_PAD.replaceChildren(); 
+  sketchPad.replaceChildren(); 
   sketchPadTitle.textContent = `${numberOfCellRows} * ${numberOfCellRows} GRID SKETCHPAD`;
 
   for(let i = 0; i < numberOfCellRows; i++) {
@@ -65,7 +84,7 @@ function sketchPadSizer() {
 
         gridRow.appendChild(gridColumn);
     }
-    SKETCH_PAD.appendChild(gridRow);
+    sketchPad.appendChild(gridRow);
   }
 }
 
