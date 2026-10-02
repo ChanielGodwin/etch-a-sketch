@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-rows {
+    width: fit-content;
+    display: flex;
+    flex: auto;
+}
+
+.grid-columns {
+    border: 1px solid black;
+}
+
+#prompt-button {
+    margin-bottom: 40px;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 20px;
+
+}
