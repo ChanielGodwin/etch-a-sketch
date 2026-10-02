@@ -38,5 +38,12 @@ body {
     padding: 5px 10px;
     border-radius: 20px;
     box-shadow: 0 0 2px 1px;
-    border: 1px solid black;
+    border: 3px solid black;
+}
+
+#title-nd-prompt-bar {
+    display: flex;
+    justify-content: space-between; 
+    font-size: 36px;
+    font-weight: bold;
 }
